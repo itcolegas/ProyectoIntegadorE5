@@ -1,0 +1,6 @@
+module Pods_FarmaciasSanate {
+  umbrella header "Pods-FarmaciasSanate-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "FarmaciasSanate",
+    "slug": "FarmaciasSanate",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "FarmaciasSanate"
+}
