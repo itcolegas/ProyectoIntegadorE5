@@ -13,8 +13,7 @@ const Item = ({ adr, onPress, selected }) => (
   </View>
 );
 
-export const Adresses = ({adresses}) => {
-  const [selectedAddress, setAddress] = useState();
+export const Adresses = ({adresses, selectedAddress, setAddress}) => {
 
   return (
     <View style={styles.container}>
@@ -41,6 +40,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#f2f2f2",
+  shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   itemSelected: {
     backgroundColor: "#55c253",
