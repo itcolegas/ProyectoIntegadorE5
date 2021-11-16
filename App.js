@@ -9,6 +9,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //layouts
 import Checkout from './layouts/Checkout';
 import Menu from './layouts/Menu';
+import Summary from './layouts/Summary';
+import CartSum from './layouts/CartSum';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +31,21 @@ export default function App() {
            <Stack.Screen
             name="Checkout"
             component={Checkout}
+            options={{
+              title: "",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Summary"
+            component={Summary}
+            options={{
+              title: "",
+              headerShown: false,
+            }}
+          /><Stack.Screen
+            name="CartSum"
+            component={CartSum}
             options={{
               title: "",
               headerShown: false,
