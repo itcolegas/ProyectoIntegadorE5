@@ -7,12 +7,12 @@ const Item = ({ product }) => (
   <View style={styles.item}>
     <Image source={product.image} style={{ width: 50, height: 50 }} />
     <Text style={styles.pname}>{product.name}</Text>
-    <Text style={styles.pcost}>${product.cost}</Text>
+    <Text style={styles.pcost}>${product.price}</Text>
   </View>
 );
 
 export const Cart = ({ cart }) => {
-  let totalCost = cart.reduce((sum, p) => sum + p.cost, 0);
+  let totalCost = cart.reduce((sum, p) => sum + p.price, 0);
   return (
     <View style={styles.container}>
       {cart && cart.map((item, i) => <Item product={item} key={i} />)}

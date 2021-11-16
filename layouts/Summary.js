@@ -19,7 +19,7 @@ export default function CartSum({ route, navigation }) {
     <View style={styles.item}>
       <Image source={product.image} style={{ width: 50, height: 50 }} />
       <Text style={styles.pname}>{product.name}</Text>
-      <Text style={styles.pcost}>${product.cost}</Text>
+      <Text style={styles.pcost}>${product.price}</Text>
     </View>
   );
   return (

@@ -59,84 +59,84 @@ export default function Menu({ navigation }) {
       {
         name: "Cough medicine",
         availability: "3",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "4",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "5",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "6",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "3",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "4",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "5",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "6",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "3",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "4",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "5",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
       {
         name: "Cough medicine",
         availability: "6",
-        cost: 300,
+        price: 300,
         image:
           "https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg",
       },
@@ -212,7 +212,7 @@ export default function Menu({ navigation }) {
                 <Text style={styles.contentText}>
                   Availability: {product.availability}
                 </Text>
-                <Text style={styles.price}>Price: ${product.cost}</Text>
+                <Text style={styles.price}>Price: ${product.price}</Text>
                 <Pressable
                   style={[styles.button, styles.buttonOpen]}
                   onPress={() => updateCart(product)}
