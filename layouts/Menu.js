@@ -16,6 +16,38 @@ import { Header } from "../components/Header";
 //import firebase from '../utils/Firebase';
 //import 'firebase/auth';
 
+/*
+Arreglo de arreglos en dynamo
+[    { "L" : [        { "S" : "1" },        { "S" : "5" }      ]    },    { "L" : [        { "S" : "2" },        { "S" : "4" }      ]    }  ]
+*/
+
+/*
+
+Recibir de producto
+
+{
+    "id":"id7",
+    "name":"Cough medicine",
+    "section":"Vitamins",
+    "price":"45.0",
+    "description":"For the cough",
+    "availability":"[{ 'L': [{'S':'5'},{'S':'7'}]}],[],[]]",
+    "image":"https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg"
+},
+
+Insertar en tabla de ordenes
+
+{
+    "id":"orderid7",
+    "date":"16-nov",
+    "customer":"Sab",
+    "address":"Saint Patrick 50",
+    "total":"Saint Patrick 50",
+    "state":"Preparando"  
+}
+
+*/
+
 //export default function Menu({navigation}) {
 export default function Menu({ navigation }) {
   //let user = firebase.auth().currentUser;
@@ -110,6 +142,7 @@ export default function Menu({ navigation }) {
       },
     ],
   });
+
 
   const updateCart = (product) => {
     console.log("Added to cart");
