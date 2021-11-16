@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#f2f2f2',  
+    width: "100%",
   },
   icon:{
     padding: 10
