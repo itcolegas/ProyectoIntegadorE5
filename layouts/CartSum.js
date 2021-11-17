@@ -22,16 +22,18 @@ export default function CartSum({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Header icon={'arrow-back'} navigation={navigation}/>
+      <Header icon={"arrow-back"} navigation={navigation} />
       <Text style={styles.summary}> Your Cart </Text>
       <Cart cart={cart} />
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Checkout", {cart: cart})}
-      >
-        <Text style={styles.bt}>CHECKOUT</Text>
-      </TouchableOpacity>
+      {cart.length > 0 && (
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Checkout", { cart: cart })}
+        >
+          <Text style={styles.bt}>CHECKOUT</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
