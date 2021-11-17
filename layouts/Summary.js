@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Adresses } from "../components/Adresses";
 import {
   StyleSheet,
@@ -12,6 +12,9 @@ import { Header } from "../components/Header";
 
 import { Cart } from "../components/Cart";
 
+import axios from 'axios';
+
+
 const adresses = [
   "One Microsoft Way, Redmond, WA",
   "One Apple Park Way, Cupertino, CA",
@@ -23,6 +26,33 @@ const cards = ["AMEX: XX-0613", "VISA: XX-2013", "MASTERCARD: XX-4200"];
 export default function CartSum({ route, navigation }) {
   const { cart, address, payment } = route.params;
   const [modalVisible, setModal] = useState(false);
+
+  let totalCost = cart.reduce((sum, p) => sum + p.price, 0);
+  const customer = "sabrisantana5"
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+/*
+  useEffect(() => {
+      const order = {
+        id: customer[0]+address[0]+getRandomInt(0, 1000), //random number
+        date: new Date(),
+        customer: customer,
+        address: address,
+        total: totalCost,
+        state:"Preparando"  
+      };
+      console.log(order);
+      axios.post(`http://ec2-54-90-7-187.compute-1.amazonaws.com:3000/putOrder`, order)
+          .then(response => console.log(response))
+          .catch(error => {
+          this.setState({ errorMessage: error.message });
+          console.error('There was an error!', error);
+        });
+  }, []);
+*/
 
   return (
     <View style={styles.container}>
