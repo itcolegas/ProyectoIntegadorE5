@@ -8,13 +8,13 @@ const Item = ({ product }) => (
   <View style={styles.item}>
     <Entypo name="cross" size={24} color="#82b4ff" style={{margin: 5}}/>
     <Image source={product.image} style={{ width: 50, height: 50 }} />
-    <Text style={styles.pname}>{product.name}</Text>
+    <Text style={styles.pname}>{product.pname}</Text>
     <Text style={styles.pcost}>${product.price}</Text>
   </View>
 );
 
 export const Cart = ({ cart }) => {
-  let totalCost = cart.reduce((sum, p) => sum + p.price, 0);
+  let totalCost = cart.reduce((sum, p) => sum + parseInt(p.price), 0);
 
   return (
     <View style={styles.container}>

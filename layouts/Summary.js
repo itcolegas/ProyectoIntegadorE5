@@ -26,33 +26,49 @@ const cards = ["AMEX: XX-0613", "VISA: XX-2013", "MASTERCARD: XX-4200"];
 export default function CartSum({ route, navigation }) {
   const { cart, address, payment } = route.params;
   const [modalVisible, setModal] = useState(false);
+  console.log(cart);
 
-  let totalCost = cart.reduce((sum, p) => sum + p.price, 0);
+  let totalCost = cart.reduce((sum, p) => sum + parseInt(p.price), 0);
   const customer = "sabrisantana5"
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-/*
-  useEffect(() => {
-      const order = {
-        id: customer[0]+address[0]+getRandomInt(0, 1000), //random number
+  function uploadOrder(){
+    const order = {
+      id: customer[0]+address[0]+getRandomInt(0, 1000), //random number
+      date: new Date(),
+      customer: customer,
+      address: address,
+      total: totalCost,
+      orderState:"Preparando"  
+    };
+    console.log(order);
+
+    let currentID = customer[0]+address[0]+getRandomInt(0, 1000);
+    let listaIDs = []
+    cart.map((product) => {
+      listaIDs.push(product.id);
+    })
+
+    axios({
+      method: "post",
+      url: "http://ec2-34-239-232-157.compute-1.amazonaws.com:3000/putOrder",
+      params: {
+        id: currentID, //random number
         date: new Date(),
         customer: customer,
         address: address,
         total: totalCost,
-        state:"Preparando"  
-      };
-      console.log(order);
-      axios.post(`http://ec2-54-90-7-187.compute-1.amazonaws.com:3000/putOrder`, order)
-          .then(response => console.log(response))
-          .catch(error => {
-          this.setState({ errorMessage: error.message });
-          console.error('There was an error!', error);
-        });
-  }, []);
-*/
+        orderState:"Preparando", 
+        products: listaIDs,
+      },
+      headers:{ "Content-Type": "application/json" }
+    }).then(() => {
+      console.log("Lo logre");
+    });
+  }
 
   return (
     <View style={styles.container}>
@@ -89,6 +105,7 @@ export default function CartSum({ route, navigation }) {
           setTimeout(()=>{
             setModal(false);
           }, 1800)
+          uploadOrder()
           setTimeout(() => {
             navigation.push("Menu", { cart: [] });
           }, 2000);

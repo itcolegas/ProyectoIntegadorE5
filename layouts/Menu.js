@@ -14,42 +14,7 @@ import { Header } from "../components/Header";
 
 import axios from 'axios';
 
-//firebase
-//import firebase from '../utils/Firebase';
-//import 'firebase/auth';
-
-/*
-Arreglo de arreglos en dynamo
-[    { "L" : [        { "S" : "1" },        { "S" : "5" }      ]    },    { "L" : [        { "S" : "2" },        { "S" : "4" }      ]    }  ]
-*/
-
-/*
-
-Recibir de producto
-
-{
-    "id":"id7",
-    "name":"Cough medicine",
-    "section":"Vitamins",
-    "price":"45.0",
-    "description":"For the cough",
-    "availability":"[[{ 'L': [{'S':'5'},{'S':'7'}]}],[],[]]",
-    "image":"https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg"
-},
-
-Insertar en tabla de ordenes
-
-{
-    "id":"orderid7",
-    "date":"16-nov",
-    "customer":"Sab",
-    "address":"Saint Patrick 50",
-    "total":"Saint Patrick 50",
-    "state":"Preparando"  
-}
-
-*/
-
+/* Escoger farmacia, filtro el catalogo */
 //export default function Menu({navigation}) {
 export default function Menu({ navigation, route }) {
   //let user = firebase.auth().currentUser;
@@ -58,53 +23,21 @@ export default function Menu({ navigation, route }) {
    const [username, setUsername] = useState("Username");
   const [cart, setCart] = useState(route.params? route.params.cart : []);
   console.log(cart)
-  const [catalog, setCatalog] = useState({
-    catalog: [
-      {
-        id:"id1",
-        name:"Cough medicine",
-        section:"Vitamins",
-        price: 200,
-        description:"For the cough",
-        availability:"3",
-        image:"https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg"
-      },
-      {
-        id:"id2",
-        name:"Cough medicine",
-        section:"Vitamins",
-        price: 300,
-        description:"For the cough",
-        availability:"4",
-        image:"https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg"
-      },
-      {
-        id:"id3",
-        name:"Cough medicine",
-        section:"Vitamins",
-        price: 350,
-        description:"For the cough",
-        availability:"8",
-        image:"https://res.cloudinary.com/mtree/image/upload/q_auto:eco,f_auto,dpr_auto/MMI-Vicks-CA-EN/2qcFBFR1H7fZyjOnGXv4Kt/f284d852f02d5819cbae3bcf50f7c868/00056100073864_C1N1.jpg?w=800&fm=jpg"
-      },
-    ],
-  });
-
-  /* Para llamar y recibir catalogo
+  const [catalog, setCatalog] = useState([]);
+  
   useEffect(() => {
   const rows = [];
-  axios.get(`http://ec2-54-90-7-187.compute-1.amazonaws.com:3000/getAllProducts`)
+  axios.get(`http://ec2-34-239-232-157.compute-1.amazonaws.com:3000/getAllProducts`)
           .then(res => {
           console.log(res);
           for(let elem in res.data.Items){
               console.log("Elem",elem);
               rows.push(res.data.Items[elem]);
           }
+          console.log(rows);
           setCatalog(rows);
           });
   }, []);
-  console.log(catalog);
-  */
 
   const updateCart = (product) => {
     console.log("Added to cart");
@@ -117,8 +50,6 @@ export default function Menu({ navigation, route }) {
   return (
     <View style={styles.menu}>
       <Header />
-
-
       <View style={styles.checkoutHeader} >
         <Text> Items: {cart.length}</Text>
         <View style={styles.checkoutContainer}>
@@ -130,23 +61,22 @@ export default function Menu({ navigation, route }) {
         </Pressable>
       </View>
       </View>
-
-      
       <View style={styles.welcomeContainer}>
-        <Text style={styles.carouselText}>Catalog</Text>
+        <Text style={styles.carouselText}>Catalog Interlomas</Text>
       </View>
       <View style={styles.carouselContainer}>
         <View style={styles.contentContainer}>
-          {catalog.catalog.map((product) => {
+          { catalog.map((product) => {
             return (
               <View style={styles.product}>
-                <Text style={styles.contentText}>{product.name}</Text>
+                <Text style={styles.contentText}>{product.pname}</Text>
                 <Image
                   source={product.image}
                   style={{ width: 200, height: 200 }}
                 />
                 <Text style={styles.contentText}>
-                  Availability: {product.availability}
+                  Availability: {Object.entries(product.inventory)[0][1]}
+                  Sucursal: {Object.entries(product.inventory)[0][0]}
                 </Text>
                 <Text style={styles.price}>Price: ${product.price}</Text>
                 <Pressable
@@ -157,7 +87,7 @@ export default function Menu({ navigation, route }) {
                 </Pressable>
               </View>
             );
-          })}
+          }) }
         </View>
       </View>
     </View>
