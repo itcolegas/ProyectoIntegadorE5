@@ -22,7 +22,7 @@ export default function CartSum({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Header />
+      <Header icon={'arrow-back'} navigation={navigation}/>
       <Text style={styles.summary}> Your Cart </Text>
       <Cart cart={cart} />
 

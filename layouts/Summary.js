@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { Adresses } from "../components/Adresses";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  Image,
+} from "react-native";
 import { Header } from "../components/Header";
 
 import { Cart } from "../components/Cart";
@@ -15,16 +22,11 @@ const cards = ["AMEX: XX-0613", "VISA: XX-2013", "MASTERCARD: XX-4200"];
 
 export default function CartSum({ route, navigation }) {
   const { cart, address, payment } = route.params;
-  const Item = ({ product }) => (
-    <View style={styles.item}>
-      <Image source={product.image} style={{ width: 50, height: 50 }} />
-      <Text style={styles.pname}>{product.name}</Text>
-      <Text style={styles.pcost}>${product.price}</Text>
-    </View>
-  );
+  const [modalVisible, setModal] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Header />
+      <Header icon={'arrow-back'} navigation={navigation}/>
       <Text style={styles.summary}> Your Order </Text>
       <Cart cart={cart} />
 
@@ -38,9 +40,29 @@ export default function CartSum({ route, navigation }) {
         <Text style={styles.pcost}>{payment}</Text>
       </View>
 
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Image
+              source={require("../assets/check.gif")}
+              style={{ width: 200, height: 200 }}
+            />
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>ORDER COMPLETE</Text>
+          </View>
+        </View>
+      </Modal>
+
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("Checkout", { cart: cart })}
+        onPress={() => {
+          setModal(true);
+          setTimeout(()=>{
+            setModal(false);
+          }, 1800)
+          setTimeout(() => {
+            navigation.push("Menu", { cart: [] });
+          }, 2000);
+        }}
       >
         <Text style={styles.bt}>CONFIRM ORDER</Text>
       </TouchableOpacity>

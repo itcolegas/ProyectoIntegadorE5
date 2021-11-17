@@ -49,12 +49,16 @@ Insertar en tabla de ordenes
 */
 
 //export default function Menu({navigation}) {
-export default function Menu({ navigation }) {
+export default function Menu({ navigation, route }) {
   //let user = firebase.auth().currentUser;
   //const [username, setUsername] = useState(user.displayName);
-  const [username, setUsername] = useState("Username");
-  const [cart, setCart] = useState([]);
+  console.log(route.params) 
+   const [username, setUsername] = useState("Username");
+  const [cart, setCart] = useState(route.params? route.params.cart : []);
+  console.log(cart)
   const [catalog, setCatalog] = useState({
+
+ 
     catalog: [
       {
         name: "Cough medicine",

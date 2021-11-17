@@ -43,7 +43,7 @@ export default function Checkout({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Header />
+      <Header icon={'arrow-back'} navigation={navigation}/>
       <Text style={styles.title}>Select the address for delivery</Text>
       <Text style={styles.adresses}> Addresses </Text>
       <Adresses

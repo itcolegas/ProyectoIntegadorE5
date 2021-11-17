@@ -6,8 +6,14 @@ export const Header = (props) => {
     return(
       <View style={styles.container}>
         {/*Este logo abre un menu que sale del lado izquierdo de la pantalla */}
-        <Ionicons name="menu-outline" size={30} color="#82b4ff"
-          style={styles.icon}/>
+        <Ionicons name={props.icon ? props.icon: "menu-outline"} size={30} color="#82b4ff"
+          style={styles.icon}
+          onPress={()=>{
+            if (props.navigation) {
+              props.navigation.goBack()
+            }
+          }}
+          />
         <Image 
           source={require('../assets/sanate.png')}
           style={styles.image}
