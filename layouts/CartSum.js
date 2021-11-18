@@ -11,7 +11,7 @@ const adresses = [
   "1600 Amphitheatre Pkwy, Mountain View, CA",
 ];
 
-const cards = ["AMEX: XX-0613", "VISA: XX-2013", "MASTERCARD: XX-4200"];
+const cards = ["AMEX: XX-0613", "VISA: XX-2013", "MASTERCARD: XX-4200", "CASH"];
 
 export default function CartSum({ route, navigation }) {
   const [payment, setPayment] = useState();

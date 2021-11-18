@@ -11,7 +11,9 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export const NewCard = ({ modalVisible, setModalVisible }) => {
+export const NewCard = ({ modalVisible, setModalVisible, cards, setNew }) => {
+  const [number, setNumber] = useState("")
+
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={styles.centeredView}>
@@ -19,7 +21,7 @@ export const NewCard = ({ modalVisible, setModalVisible }) => {
           <Text>Add a new Card!</Text>
           <View style={{ flexDirection: "row", margin: 10 }}>
             <Text>Card Number:</Text>
-            <TextInput placeholder={"XXXX-XXXX-XXXX-XXXX"} />
+            <TextInput placeholder={"XXXX-XXXX-XXXX-XXXX"} onChangeText={setNumber}/>
           </View>
 
           <View style={{ flexDirection: "row", margin: 10 }}>
@@ -36,7 +38,12 @@ export const NewCard = ({ modalVisible, setModalVisible }) => {
             style={{ flexDirection: "row", justifyContent: "space-evenly" }}
           >
             <TouchableOpacity
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => {
+                let temp = [...cards]
+                const newCard = "VISA: XX-" + number.substr(-4, number.length)
+                temp.splice(-1, 0, newCard)
+                setNew(temp)
+                setModalVisible(!modalVisible)}}
               style={styles.button}
             >
              <Text style={styles.bt}>Add New Card</Text>

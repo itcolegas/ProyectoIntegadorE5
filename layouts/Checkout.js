@@ -18,19 +18,19 @@ import { NewAddress } from "../components/NewAddress";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const adresses = [
-  "One Microsoft Way, Redmond, WA",
-  "One Apple Park Way, Cupertino, CA",
-  "1600 Amphitheatre Pkwy, Mountain View, CA",
-];
-
-const cards = ["AMEX: XX-0613", "VISA: XX-2013", "MASTERCARD: XX-4200"];
-
 export default function Checkout({ navigation, route }) {
   const [payment, setPayment] = useState(0);
   const [selectedAddress, setAddress] = useState();
   const [modalVisibleCard, setModalVisibleCard] = useState(false);
   const [modalVisibleAddr, setModalVisibleAddr] = useState(false);
+  const [adresses, setNewAddress] = useState([
+  "One Microsoft Way, Redmond, WA",
+  "One Apple Park Way, Cupertino, CA",
+  "1600 Amphitheatre Pkwy, Mountain View, CA",
+])
+  const [cards, setCards] = useState(["AMEX: XX-0613", "VISA: XX-2013", "MASTERCARD: XX-4200", "CASH"])
+
+
   const { cart } = route.params;
 
   const goToSummary = () => {
@@ -45,17 +45,21 @@ export default function Checkout({ navigation, route }) {
     <View style={styles.container}>
       <Header icon={'arrow-back'} navigation={navigation}/>
       <Text style={styles.title}>Select the address for delivery</Text>
-      <Text style={styles.adresses}> Addresses </Text>
+      <Text style={styles.adresses}>Recurring Addresses </Text>
       <Adresses
         adresses={adresses}
         selectedAddress={selectedAddress}
         setAddress={setAddress}
       />
       <NewCard
+      cards={cards}
+      setNew={setCards}
         modalVisible={modalVisibleCard}
         setModalVisible={setModalVisibleCard}
       />
       <NewAddress
+        adr={adresses}
+        setNew={setNewAddress}
         modalVisible={modalVisibleAddr}
         setModalVisible={setModalVisibleAddr}
       />

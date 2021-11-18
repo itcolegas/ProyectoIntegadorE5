@@ -11,7 +11,11 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export const NewAddress = ({ modalVisible, setModalVisible }) => {
+export const NewAddress = ({ modalVisible, setModalVisible, adr, setNew }) => {
+
+  const [adr1, setAd] = useState("")
+  const [apt, setApt] = useState("")
+
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={styles.centeredView}>
@@ -19,12 +23,12 @@ export const NewAddress = ({ modalVisible, setModalVisible }) => {
           <Text>Add a new Address!</Text>
           <View style={{ flexDirection: "row", margin: 10 }}>
             <Text>Street and Number:</Text>
-            <TextInput placeholder={""} />
+            <TextInput placeholder={""} onChangeText={setAd}/>
           </View>
 
           <View style={{ flexDirection: "row", margin: 10 }}>
             <Text>Apartment Number:</Text>
-            <TextInput placeholder={"Optional"} />
+            <TextInput placeholder={"Optional"} onChangeText={setApt}/>
           </View>
 
           <View style={{ flexDirection: "row", margin: 10 }}>
@@ -36,7 +40,13 @@ export const NewAddress = ({ modalVisible, setModalVisible }) => {
             style={{ flexDirection: "row", justifyContent: "space-evenly" }}
           >
             <TouchableOpacity
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => {
+                let temp = [...adr]
+                const newAd = adr1 + " " + apt
+                temp.push(newAd)
+                setNew(temp)
+                setModalVisible(!modalVisible)
+              }}
               style={styles.button}
             >
              <Text style={styles.bt}>Add Address</Text>

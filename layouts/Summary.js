@@ -15,14 +15,6 @@ import { Cart } from "../components/Cart";
 import axios from 'axios';
 
 
-const adresses = [
-  "One Microsoft Way, Redmond, WA",
-  "One Apple Park Way, Cupertino, CA",
-  "1600 Amphitheatre Pkwy, Mountain View, CA",
-];
-
-const cards = ["AMEX: XX-0613", "VISA: XX-2013", "MASTERCARD: XX-4200"];
-
 export default function CartSum({ route, navigation }) {
   const { cart, address, payment } = route.params;
   const [modalVisible, setModal] = useState(false);
@@ -49,8 +41,10 @@ export default function CartSum({ route, navigation }) {
     let currentID = customer[0]+address[0]+getRandomInt(0, 1000);
     let listaIDs = []
     cart.map((product) => {
-      listaIDs.push(product.id);
+      listaIDs.push([product.id,1]);
     })
+
+    console.log(Object.fromEntries(listaIDs));
 
     axios({
       method: "post",
@@ -62,7 +56,7 @@ export default function CartSum({ route, navigation }) {
         address: address,
         total: totalCost,
         orderState:"Preparando", 
-        products: listaIDs,
+        products: Object.fromEntries(listaIDs),
       },
       headers:{ "Content-Type": "application/json" }
     }).then(() => {
@@ -107,7 +101,7 @@ export default function CartSum({ route, navigation }) {
           }, 1800)
           uploadOrder()
           setTimeout(() => {
-            navigation.push("Menu", { cart: [] });
+            navigation.push("Menu", { cart: [] , comprado: true});
           }, 2000);
         }}
       >

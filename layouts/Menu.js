@@ -2,14 +2,10 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Image,
-  ScrollView,
   Text,
   StyleSheet,
-  Button,
   Pressable,
-  Dimensions,
 } from "react-native";
-import { Icon } from "react-native-elements";
 import { Header } from "../components/Header";
 
 import axios from 'axios';
@@ -17,10 +13,8 @@ import axios from 'axios';
 /* Escoger farmacia, filtro el catalogo */
 //export default function Menu({navigation}) {
 export default function Menu({ navigation, route }) {
-  //let user = firebase.auth().currentUser;
-  //const [username, setUsername] = useState(user.displayName);
   console.log(route.params) 
-   const [username, setUsername] = useState("Username");
+  const [username, setUsername] = useState("Username");
   const [cart, setCart] = useState(route.params? route.params.cart : []);
   console.log(cart)
   const [catalog, setCatalog] = useState([]);
@@ -75,7 +69,9 @@ export default function Menu({ navigation, route }) {
                   style={{ width: 200, height: 200 }}
                 />
                 <Text style={styles.contentText}>
-                  Availability: {Object.entries(product.inventory)[0][1]}
+                  Availability: {route.params? Object.entries(product.inventory)[0][1] : parseInt(Object.entries(product.inventory)[0][1]) + 1}
+                </Text>
+                <Text style={styles.contentText}>
                   Sucursal: {Object.entries(product.inventory)[0][0]}
                 </Text>
                 <Text style={styles.price}>Price: ${product.price}</Text>
